@@ -1,13 +1,27 @@
-name: Hello CI
+name: Project Shanghai CI
 
 on:
   push:
-    
+    branches:
+      - master
+
 jobs:
-  hello:
+  hello-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello
-        run: echo "Hello Project Shanghai!"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Show System Information
+        run: |
+          echo "Project Shanghai 2027"
+          pwd
+          ls -la
+
+      - name: Print Current Time
+        run: date
+
+      - name: Print Success Message
+        run: echo "GitHub Actions is running successfully!"
 
