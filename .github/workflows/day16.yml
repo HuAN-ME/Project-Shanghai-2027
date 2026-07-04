@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  buold:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
