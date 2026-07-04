@@ -1,0 +1,44 @@
+name: Project Shanghai CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  buold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build step
+        run: |
+          echo "Building project..."
+          mkdir build
+          echo "artifact" > build/app.txt
+          ls -la build
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run test
+        run: |
+          echo "Running tests..."
+          test -f README.md
+          echo "Tests passed!"
+
+  report:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: ubuntu-latest
+        run: |
+          echo "Generating report..."
+          echo "CI SUCCESS ✔"
+
