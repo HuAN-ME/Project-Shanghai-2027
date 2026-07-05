@@ -1,0 +1,47 @@
+name: Project Shanghai Artifact Demo
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Build Artifact
+        run: |
+          mkdir build
+          echo "Project Shanghai 2027" > build/app.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-build
+          path: build/
+
+    test:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: project-build
+
+      - name: Show Files
+        run: |
+          ls -R
+
+      - name: Read Artifact
+        run: |
+          cat app.txt
