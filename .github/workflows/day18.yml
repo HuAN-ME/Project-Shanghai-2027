@@ -1,0 +1,19 @@
+name: Day18 Secrets Demo
+
+on:
+  workflow_dispatch:
+
+env:
+  PROJECT: Project Shanghai
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show Environment Variable
+        run: echo "Project: $PROJECT"
+
+      - name: Show Secret
+        run: echo "Hello ${{ secret.MY_NAME }}"
+      
