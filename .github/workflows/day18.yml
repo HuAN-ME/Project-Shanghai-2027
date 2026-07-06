@@ -16,4 +16,3 @@ jobs:
 
       - name: Show Secret
         run: echo "Hello ${{ secrets.MY_NAME }}"
-      
