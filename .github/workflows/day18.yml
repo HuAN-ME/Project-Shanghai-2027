@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Show Environment Variable
         run: echo "Project: $PROJECT"
-
+        
       - name: Show Secret
-        run: echo "Hello ${{ secrets.MY_NAME }}"
+        env:
+          MY_NAME: ${{ secrets.MY_NAME }}
+        run: echo "Hello $MY_NAME"
