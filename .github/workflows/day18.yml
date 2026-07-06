@@ -15,5 +15,5 @@ jobs:
         run: echo "Project: $PROJECT"
 
       - name: Show Secret
-        run: echo "Hello ${{ secret.MY_NAME }}"
+        run: echo "Hello ${{ secrets.MY_NAME }}"
       
