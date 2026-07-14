@@ -26,8 +26,10 @@ jobs:
 
       - name: Build Image
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner }}/project-shanghai:latest .
+          podman build \
+            -t ghcr.io/huan-me/project-shanghai:latest \
+            ./containers/day24-nginx
 
       - name: Push Image
         run: |
-          podman push ghcr.io/${{ github.repository_owner }}/project-shanghai:latest
+          podman push ghcr.io/huan-me/project-shanghai:latest
