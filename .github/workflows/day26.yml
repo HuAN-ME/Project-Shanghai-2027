@@ -28,7 +28,7 @@ jobs:
         run: |
           podman build \
             -t ghcr.io/huan-me/project-shanghai:latest \
-            ./containers/day24-nginx
+            ./containers/nginx/day24-nginx
 
       - name: Push Image
         run: |
