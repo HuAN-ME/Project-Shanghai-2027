@@ -1,0 +1,11 @@
+FROM nginx AS builder
+
+COPY index.html /tmp/index.html
+
+FROM nginx
+
+COPY --from=builder \
+/tmp/index.html \
+/usr/share/nginx/html/index.html
+
+EXPOSE 80
