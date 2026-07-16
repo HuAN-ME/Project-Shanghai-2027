@@ -1,0 +1,16 @@
+services:
+
+  web:
+
+    build: .
+
+    container_name: day28-web
+
+    ports:
+      - "8080:80"
+
+  redis:
+
+    image: redis:latest
+
+    container_name: day28-redis
