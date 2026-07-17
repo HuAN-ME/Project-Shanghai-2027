@@ -1,0 +1,65 @@
+services:
+
+
+  nginx:
+
+    build:
+      context: ./nginx
+
+    container_name: day29-nginx
+
+    ports:
+      - "8080:80"
+
+
+  app:
+
+    build:
+      context: .
+
+      dockerfile: backend/Containerfile
+
+
+    container_name: day29-app
+
+
+    environment:
+
+      DB_HOST: postgres
+
+      DB_NAME: project
+
+
+      DB_USER: admin
+
+
+      DB_PASSWORD: password
+
+
+  postgres:
+
+
+    image: postgres:16
+
+
+    container_name: day29-postgres
+
+
+    environment:
+
+      POSTGRES_DB: project
+
+      POSTGRES_USER: admin
+
+      POSTGRES_PASSWORD: password
+
+
+    volumes:
+
+      - postgres-data:/var/lib/postgresql/data
+
+
+
+volumes:
+
+  postgres-data:
