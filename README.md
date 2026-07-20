@@ -10,6 +10,8 @@
 #Progress
 
 #Learning Notes
+Phase 1（Day1-Day30）
+DevOps Foundation & Containerization 完成 ✅ Date: 07/18/26
 
 #Labs
 
