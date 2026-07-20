@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+
+spec:
+  containers:
+    - name: nginx
+      image: docker.m.daocloud.io/library/nginx:latest
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 80
