@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: config-secret-demo
+
+
+spec:
+
+  replicas: 2
+
+
+  selector:
+    matchLabels:
+      app: demo
+
+
+  template:
+
+    metadata:
+      labels:
+        app: demo
+
+
+    spec:
+
+      containers:
+
+      - name: nginx
+
+        image: docker.m.daocloud.io/library/nginx:latest
+
+
+        volumeMounts:
+
+        - name: config-volume
+          mountPath: /etc/app
+
+
+        - name: secret-volume
+          mountPath: /etc/password
+
+
+      volumes:
+
+      - name: config-volume
+
+        configMap:
+          name: app-config
+
+
+      - name: secret-volume
+
+        secret:
+          secretName: app-secret
