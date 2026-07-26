@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx-update-demo
+
+
+spec:
+
+  replicas: 3
+
+
+  selector:
+    matchLabels:
+      app: nginx
+
+
+  strategy:
+
+    type: RollingUpdate
+
+    rollingUpdate:
+
+      maxSurge: 1
+
+      maxUnavailable: 1
+
+
+  template:
+
+    metadata:
+
+      labels:
+        app: nginx
+
+
+    spec:
+
+      containers:
+
+      - name: nginx
+
+        image: docker.m.daocloud.io/library/nginx:latest
+
+        ports:
+
+        - containerPort: 80
