@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: api-demo
+
+
+spec:
+
+  replicas: 2
+
+
+  selector:
+    matchLabels:
+      app: api-demo
+
+
+  template:
+
+    metadata:
+      labels:
+        app: api-demo
+
+
+    spec:
+
+      containers:
+
+      - name: nginx
+
+        image: nginx
+
+
+        ports:
+        - containerPort: 80
+
+
+        volumeMounts:
+
+        - name: api-content
+
+          mountPath: /usr/share/nginx/html/index.html
+
+          subPath: index.html
+
+
+
+      volumes:
+
+      - name: api-content
+
+        configMap:
+
+          name: api-index
