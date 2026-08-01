@@ -1,0 +1,8 @@
+replicaCount: 2
+
+image:
+  repository: docker.m.daocloud.io/library/nginx
+  tag: "1.25"
+
+service:
+  type: NodePort
