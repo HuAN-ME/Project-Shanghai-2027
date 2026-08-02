@@ -1,0 +1,5 @@
+replicaCount: 3
+
+appOwner: devops-team
+
+environment: prod
