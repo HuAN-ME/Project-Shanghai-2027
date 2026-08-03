@@ -1,0 +1,6 @@
+# container images
+*.tar
+*.tar.gz
+
+# build artifacts
+*.img
