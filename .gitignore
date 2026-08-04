@@ -1,0 +1,128 @@
+# ==================================
+# Project-Shanghai-2027 Git Ignore
+# DevOps / Kubernetes / CI-CD Project
+# ==================================
+
+
+# ------------------------------
+# Container Images
+# ------------------------------
+
+# Docker / Podman image archives
+*.tar
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+
+# Container export files
+*.oci
+*.img
+
+# Image build cache
+.docker/
+.container/
+
+
+# ------------------------------
+# Kubernetes
+# ------------------------------
+
+# Helm packaged charts
+*.tgz
+
+# Helm cache
+charts/*/charts/*.tgz
+
+# Rendered Kubernetes manifests
+rendered.yaml
+rendered-*.yaml
+
+# Temporary kube files
+.kube/
+.kubeconfig
+
+
+# ------------------------------
+# Helm
+# ------------------------------
+
+# Helm dependency cache
+charts/**/charts/
+
+# Helm generated files
+*.lock
+
+
+# ------------------------------
+# Terraform
+# ------------------------------
+
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+
+# ------------------------------
+# CI/CD
+# ------------------------------
+
+# GitHub Actions local files
+.github/*.log
+
+
+# ------------------------------
+# Linux
+# ------------------------------
+
+*.log
+
+*.tmp
+*.swp
+
+.cache/
+tmp/
+
+
+# ------------------------------
+# Python
+# ------------------------------
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+
+# ------------------------------
+# Node
+# ------------------------------
+
+node_modules/
+npm-debug.log
+
+
+# ------------------------------
+# IDE
+# ------------------------------
+
+.vscode/
+.idea/
+
+*.iml
+
+
+# ------------------------------
+# OS
+# ------------------------------
+
+.DS_Store
+Thumbs.db
+
+
+# ------------------------------
+# Backup
+# ------------------------------
+
+*.bak
+*.backup
+*~
