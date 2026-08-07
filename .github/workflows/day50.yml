@@ -1,8 +1,8 @@
-name: Day50 Docker Build
+name: Day50 Harbor CI
 
 
 on:
-
+  push:
   workflow_dispatch:
 
 
@@ -16,21 +16,32 @@ jobs:
     steps:
 
     - name: Checkout
-
       uses: actions/checkout@v4
-
-
-    - name: Docker Build
-
-      run: |
-
-        docker build \
-        -t day50-demo:v1 \
-        ./app
 
 
     - name: Runner Info
       run: |
-        
         hostname
-        docker info | grep "Server Version"
+        docker version
+
+
+    - name: Login Harbor
+      run: |
+        echo "${{ secrets.HARBOR_PASSWORD }}" | \
+        docker login harbor.local \
+        -u "${{ secrets.HARBOR_USERNAME }}" \
+        --password-stdin
+
+
+    - name: Build Image
+      run: |
+        docker build \
+        -t harbor.local/project-shanghai/day50-demo:v1 \
+        ./k8s/labs/day50/github-actions-harbor-demo/app
+
+
+
+    - name: Push Image
+      run: |
+        docker push \
+        harbor.local/project-shanghai/day50-demo:v1
