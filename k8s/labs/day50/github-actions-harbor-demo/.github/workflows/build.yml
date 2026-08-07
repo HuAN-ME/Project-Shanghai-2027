@@ -1,0 +1,29 @@
+name: Day50 Docker Build
+
+
+on:
+
+  workflow_dispatch:
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+    - name: Checkout
+
+      uses: actions/checkout@v4
+
+
+    - name: Docker Build
+
+      run: |
+
+        docker build \
+        -t day50-demo:v1 \
+        ./app
