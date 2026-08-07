@@ -126,3 +126,7 @@ Thumbs.db
 *.bak
 *.backup
 *~
+
+# Harbor generated files
+k8s/labs/day47/harbor/harbor/common/
+k8s/labs/day47/harbor/harbor/data/
