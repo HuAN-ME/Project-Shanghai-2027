@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: day51-demo-ingress
+  namespace: harbor-demo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: day51.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: day51-demo
+            port:
+              number: 80
