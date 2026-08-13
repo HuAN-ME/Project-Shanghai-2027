@@ -1,0 +1,26 @@
+replicaCount: 2
+
+
+image:
+  repository: harbor.local/project-shanghai/day50-demo
+  tag: v2
+  pullPolicy: IfNotPresent
+
+
+imagePullSecrets:
+  - name: harbor-secret
+
+
+service:
+  type: ClusterIP
+  port: 80
+
+
+ingress:
+  enabled: true
+
+  className: nginx
+
+  host: day51.local
+
+  path: /

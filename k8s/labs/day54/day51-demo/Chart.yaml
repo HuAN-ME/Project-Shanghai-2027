@@ -1,0 +1,11 @@
+apiVersion: v2
+
+name: day51-demo
+
+description: Helm chart for Project-Shanghai-2027 day51 demo
+
+type: application
+
+version: 0.1.0
+
+appVersion: "v2"
