@@ -1,7 +1,9 @@
 replicaCount: 1
 
 image:
+  repository: day56-demo
   tag: dev
+  pullPolicy: IfNotPresent
 
 resources:
 
