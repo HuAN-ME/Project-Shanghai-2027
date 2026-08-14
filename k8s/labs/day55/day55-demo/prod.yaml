@@ -1,0 +1,95 @@
+---
+# Source: day55-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: day55-prod-day55-demo
+  labels:
+    helm.sh/chart: day55-demo-0.1.0
+    app.kubernetes.io/name: day55-demo
+    app.kubernetes.io/instance: day55-prod
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: day55-demo
+    app.kubernetes.io/instance: day55-prod
+---
+# Source: day55-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day55-prod-day55-demo
+  labels:
+    helm.sh/chart: day55-demo-0.1.0
+    app.kubernetes.io/name: day55-demo
+    app.kubernetes.io/instance: day55-prod
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: day55-demo
+      app.kubernetes.io/instance: day55-prod
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: day55-demo-0.1.0
+        app.kubernetes.io/name: day55-demo
+        app.kubernetes.io/instance: day55-prod
+        app.kubernetes.io/version: "1.16.0"
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: day55-prod-day55-demo
+      containers:
+        - name: day55-demo
+          image: "harbor.local/project-shanghai/day50-demo:v2.0.0"
+          imagePullPolicy: 
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+---
+# Source: day55-demo/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: day55-prod-day55-demo
+  labels:
+    helm.sh/chart: day55-demo-0.1.0
+    app.kubernetes.io/name: day55-demo
+    app.kubernetes.io/instance: day55-prod
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "day55.example.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: day55-prod-day55-demo
+                port:
+                  number: 80

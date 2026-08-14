@@ -1,0 +1,21 @@
+replicaCount: 2
+
+image:
+  tag: rc
+
+
+resources:
+
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+
+ingress:
+
+  hosts:
+
+  - host: staging.day55.local
+    paths:
+        - path: /
+          pathType: Prefix
