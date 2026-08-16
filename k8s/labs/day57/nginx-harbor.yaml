@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-harbor
+  namespace: harbor-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-harbor
+  template:
+    metadata:
+      labels:
+        app: nginx-harbor
+    spec:
+      containers:
+      - name: nginx
+        image: harbor.local/library/nginx:test
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: harbor-secret
