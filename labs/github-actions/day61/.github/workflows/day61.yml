@@ -20,8 +20,8 @@ jobs:
           echo "Day: 61"
           echo "CI Pipeline is running."
 
-      - name: Run basic test
+      - name: Run application test
         run: |
-          echo "Running basic CI test..."
-          test -f .github/workflows/day61.yml
-          echo "Test passed."
+          echo "Running application test..."
+          test "$(cat app/health.txt)" = "OK"
+          echo "Application test passed."
