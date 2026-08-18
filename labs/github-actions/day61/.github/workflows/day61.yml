@@ -20,6 +20,13 @@ jobs:
           echo "Day: 61"
           echo "CI Pipeline is running."
 
+      - name: Build application
+        run: |
+          echo "Building application..."
+          mkdir -p build
+          cp app/health.txt build/
+          echo "Application build completed."
+
       - name: Run application test
         run: |
           echo "Running application test..."
