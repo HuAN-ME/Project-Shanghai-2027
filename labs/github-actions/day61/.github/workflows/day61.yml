@@ -1,0 +1,27 @@
+name: Day61 CI Basics
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show environment
+        run: |
+          echo "Project: Project Shanghai 2027"
+          echo "Day: 61"
+          echo "CI Pipeline is running."
+
+      - name: Run basic test
+        run: |
+          echo "Running basic CI test..."
+          test -f .github/workflows/day61.yml
+          echo "Test passed."
