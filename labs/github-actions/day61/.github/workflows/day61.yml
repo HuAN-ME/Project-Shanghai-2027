@@ -32,3 +32,7 @@ jobs:
           echo "Running application test..."
           test "$(cat app/health.txt)" = "OK"
           echo "Application test passed."
+
+      - name: Build Docker image
+        run: |
+          docker build -t day62-nginx:${{ github.sha }} .
